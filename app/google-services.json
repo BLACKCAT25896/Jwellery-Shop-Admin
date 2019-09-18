@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "352732668478",
+    "firebase_url": "https://jewellery-shop-73e9f.firebaseio.com",
+    "project_id": "jewellery-shop-73e9f",
+    "storage_bucket": "jewellery-shop-73e9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352732668478:android:caea415a0fe84d8a27276f",
+        "android_client_info": {
+          "package_name": "com.example.jewelleryshopadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352732668478-hfpt7d37udjn74844gh5pq69kihjfla9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jewelleryshopadmin",
+            "certificate_hash": "ad141bce41c6cdd14658031cb24f530930d23ae8"
+          }
+        },
+        {
+          "client_id": "352732668478-qs3v4rbh0d52ng49u78e07rvs3b2nlnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqZBS41FoP8lM41-czSFHlGx9qmE980bk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352732668478-qs3v4rbh0d52ng49u78e07rvs3b2nlnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
