@@ -88,9 +88,9 @@ public class HomeActivity extends AppCompatActivity {
                         Category category = data.getValue(Category.class);
                         // String pushId = data.getKey();
                         categoryList.add(category);
-                        String namee = data.child("categoryName").getValue().toString();
+                       // String namee = data.child("categoryName").getValue().toString();
 
-                        Toast.makeText(HomeActivity.this, ""+namee, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(HomeActivity.this, ""+namee, Toast.LENGTH_SHORT).show();
 
                         //pushList.add(pushId);
                         //binding.dummyTextTV.setVisibility(View.INVISIBLE);

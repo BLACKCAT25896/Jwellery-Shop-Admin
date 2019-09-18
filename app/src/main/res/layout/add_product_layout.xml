@@ -1,31 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
 
-        >
-       <EditText
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="Product Name"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Name"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Name"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Product Name"/>
-    </LinearLayout>
+            >
+            <EditText
+                android:id="@+id/productNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:hint=" Name"/>
+            <EditText
+                android:id="@+id/productPriceET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=" Price"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                />
+            <EditText
+                android:id="@+id/productDiscountET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:hint=" Discount"/>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_photo_camera_black_24dp"
+                    android:id="@+id/productImageCamera"/>
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_image_24dp"
+                    android:id="@+id/productImage"/>
+                <TextView
+                    android:id="@+id/uploadProductImage"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload"/>
+            </LinearLayout>
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

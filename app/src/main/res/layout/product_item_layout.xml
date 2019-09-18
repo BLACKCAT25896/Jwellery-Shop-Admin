@@ -1,35 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="10dp"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:textSize="15dp"
-            android:textStyle="bold"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Product Name"
-            android:id="@+id/productNameTV"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tk 250"
-            android:textSize="15dp"
-            android:id="@+id/productPriceTV"/>
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+
+                    android:src="@drawable/jewellery"
+                    android:id="@+id/productImageIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    />
+                <TextView
+                    android:id="@+id/discountTV"
+                    android:layout_width="80dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="10% Off"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_discount"/>
 
 
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height=".5dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/grey"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/background"
+                android:layout_marginTop="5dp"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/productNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Product Name"
+                    android:paddingLeft="5dp"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textColor="@color/colorPrimary"
+                        android:layout_margin="3dp"
+                        android:id="@+id/currentPriceTV"
+                        android:layout_width="0dp"
+                        android:layout_weight=".3"
+                        android:layout_height="wrap_content"
+                        android:text="990"
+                        android:textAlignment="textStart"
+                        android:textSize="14dp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:textColor="@color/grey"
+                        android:layout_margin="3dp"
+                        android:id="@+id/regularPriceTV"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:text="990"
+                        android:textAlignment="textStart"
+                        android:textSize="14dp"
+                        android:textStyle="bold"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_favorite_border_black_24dp"
+                        android:id="@+id/favIV"
+                        android:layout_margin="5dp"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
 
 

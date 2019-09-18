@@ -1,6 +1,7 @@
 package com.example.jewelleryshopadmin.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jewelleryshopadmin.R;
+import com.example.jewelleryshopadmin.activity.ProductActivity;
 import com.example.jewelleryshopadmin.model.Category;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +58,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ""+currentCategory.getCategoryName() +"   "+ currentCategory.getCategoryId(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, ""+currentCategory.getCategoryName() +"   "+ currentCategory.getCategoryId(), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(context, ProductActivity.class);
+                intent.putExtra("key",currentCategory.getCategoryId());
+                context.startActivity(intent );
+
+
+
             }
         });
 

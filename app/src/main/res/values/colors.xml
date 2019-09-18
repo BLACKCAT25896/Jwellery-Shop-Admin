@@ -6,4 +6,5 @@
     <color name="white">#ffffff</color>
     <color name="grey">#808080</color>
     <color name="background">#e8f3ec</color>
+    <color name="discount">#F7B436</color>
 </resources>
