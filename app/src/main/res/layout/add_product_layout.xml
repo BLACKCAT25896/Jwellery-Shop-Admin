@@ -35,6 +35,13 @@
                 android:inputType="numberDecimal"
                 android:imeOptions="actionDone"
                 android:hint=" Discount"/>
+            <EditText
+                android:id="@+id/productDescriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:imeOptions="actionDone"
+                android:hint=" Description"/>
             <LinearLayout
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"

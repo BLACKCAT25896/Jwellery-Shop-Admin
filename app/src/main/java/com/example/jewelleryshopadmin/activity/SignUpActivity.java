@@ -89,7 +89,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void register(final String name, final String email, final String password) {
-
+        progressDialog.setTitle("wait....!");
+        progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -105,6 +106,8 @@ public class SignUpActivity extends AppCompatActivity {
                             Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
                             startActivity(intent);
 
+
+                            progressDialog.dismiss();
                             finish();
 
 
@@ -124,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(SignUpActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        finish();
+
 
 
     }

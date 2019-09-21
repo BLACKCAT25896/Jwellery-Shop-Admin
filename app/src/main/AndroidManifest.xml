@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SignUpActivity"></activity>
-        <activity android:name=".activity.SignInActivity" >
+        <activity android:name=".activity.DetailsActivity"></activity>
+        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".activity.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +20,7 @@
         </activity>
         <activity android:name=".activity.ProductActivity" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.HomeActivity">
-
-        </activity>
+        <activity android:name=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>

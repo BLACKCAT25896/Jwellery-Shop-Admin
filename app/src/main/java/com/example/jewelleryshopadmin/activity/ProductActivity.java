@@ -51,10 +51,10 @@ public class ProductActivity extends AppCompatActivity {
     private DatabaseReference category;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    private EditText productNameET, productPriceET,productDiscount;
+    private EditText productNameET, productPriceET,productDiscount,productDescription;
     private ImageView productImageCamera, productImageShow;
     private TextView btnUpload, uploaded;
-    private String categoryId, name, price, discount, imageUrl = "", categoryN;
+    private String categoryId, name, price, discount,description, imageUrl = "", categoryN;
     private Uri saveUri;
     private List<Product> productList;
     private ProductAdapter adapter;
@@ -158,6 +158,7 @@ public class ProductActivity extends AppCompatActivity {
         productImageCamera = add_menu_layout.findViewById(R.id.productImageCamera);
         productImageShow = add_menu_layout.findViewById(R.id.productImage);
         uploaded = add_menu_layout.findViewById(R.id.uploaded);
+        productDescription = add_menu_layout.findViewById(R.id.productDescriptionET);
 
 
       /*  yseBtn = add_menu_layout.findViewById(R.id.yesBtn);
@@ -197,13 +198,14 @@ public class ProductActivity extends AppCompatActivity {
                     discount = "0";
                 }
                 discountAmount= Integer.parseInt(discount);
+                description = productDescription.getText().toString();
 
                 double currentPrice = regularPrice - (regularPrice * Double.valueOf(discountAmount))/100;
 
                 String key = category.child(categoryId).child("Product").push().getKey();
                 String userId = firebaseAuth.getCurrentUser().getUid();
 
-                Product product = new Product(userId,categoryId,key,name,regularPrice,currentPrice,imageUrl,discountAmount);
+                Product product = new Product(userId,categoryId,key,name,regularPrice,currentPrice,imageUrl,discountAmount,description);
 
                 DatabaseReference productRef = category.child(categoryId).child("Product");
                 productRef.child(key).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {

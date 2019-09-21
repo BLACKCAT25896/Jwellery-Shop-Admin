@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:layout_margin="3dp"
                     android:textColor="@color/colorPrimary"
                     android:id="@+id/productNameTV"
                     android:layout_width="match_parent"
@@ -90,22 +91,24 @@
                         android:layout_height="wrap_content"
                         android:text="990"
                         android:textSize="14dp"
+                        android:gravity="end"
+                        android:paddingRight="15dp"
                         android:textStyle="bold"/>
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_favorite_border_black_24dp"
-                        android:id="@+id/beforeFavIV"
-                        android:layout_margin="5dp"/>
-                    <ImageView
-                        android:visibility="gone"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_favorite_black_24dp"
-                        android:id="@+id/afterFavIV"
-                        android:layout_margin="5dp"/>
+<!--                    <ImageView-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_favorite_border_black_24dp"-->
+<!--                        android:id="@+id/beforeFavIV"-->
+<!--                        android:layout_margin="5dp"/>-->
+<!--                    <ImageView-->
+<!--                        android:visibility="gone"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_favorite_black_24dp"-->
+<!--                        android:id="@+id/afterFavIV"-->
+<!--                        android:layout_margin="5dp"/>-->
 
 
                 </LinearLayout>

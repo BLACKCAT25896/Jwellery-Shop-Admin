@@ -59,6 +59,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Upload"/>
+                <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone"
+                    android:id="@+id/uploaded"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Uploaded"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -9,13 +9,14 @@ public class Product {
     private double productDiscountPrice;
     private String productImage;
     private int productDiscount;
+    private String productDescription;
 
 
 
     public Product() {
     }
 
-    public Product(String userId, String categoryId, String productId, String productName, double productRegularPrice, double productDiscountPrice, String productImage, int productDiscount) {
+    public Product(String userId, String categoryId, String productId, String productName, double productRegularPrice, double productDiscountPrice, String productImage, int productDiscount, String productDescription) {
         this.userId = userId;
         this.categoryId = categoryId;
         this.productId = productId;
@@ -24,6 +25,7 @@ public class Product {
         this.productDiscountPrice = productDiscountPrice;
         this.productImage = productImage;
         this.productDiscount = productDiscount;
+        this.productDescription = productDescription;
     }
 
     public String getUserId() {
@@ -56,5 +58,9 @@ public class Product {
 
     public int getProductDiscount() {
         return productDiscount;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
     }
 }

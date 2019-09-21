@@ -48,8 +48,8 @@ import java.util.UUID;
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private EditText edtName;
-    private ImageView btnSelect,showImage;
-    private TextView btnUpload;
+    private ImageView btnSelect, showImage;
+    private TextView btnUpload,uploaded;
     private Category newCategory;
     private Button yseBtn, noBtn;
     private FirebaseAuth firebaseAuth;
@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_home);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         init();
         controlFAB();
         getCategory();
@@ -75,43 +75,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getCategory() {
-       String userId = firebaseAuth.getCurrentUser().getUid();
-        category.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+        String userId = firebaseAuth.getCurrentUser().getUid();
+        category.orderByChild("userId").equalTo(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     categoryList.clear();
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    Category category = data.getValue(Category.class);
-                                    categoryList.add(category);
-                                    adapter.notifyDataSetChanged();
-                                }
-                                binding.homeRecyclerViewHorizontal.setAdapter(adapter);
+                        Category category = data.getValue(Category.class);
+                        categoryList.add(category);
+                        adapter.notifyDataSetChanged();
+                    }
+                    binding.homeRecyclerViewHorizontal.setAdapter(adapter);
 
-
-//                    DatabaseReference catRef = category;
-//                    catRef.addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if(dataSnapshot.exists()){
-//                                categoryList.clear();
-//
-//
-//                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-//                                    Category category = data.getValue(Category.class);
-//                                    categoryList.add(category);
-//                                    adapter.notifyDataSetChanged();
-//                                }
-//                                binding.homeRecyclerViewHorizontal.setAdapter(adapter);
-//
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                        }
-//                    });
 
                 }
 
@@ -122,10 +98,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
-
-        /////////////Test//////////
-
 
 
     }
@@ -146,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void init() {
         categoryList = new ArrayList<>();
-        adapter = new CategoryAdapter(categoryList,this);
+        adapter = new CategoryAdapter(categoryList, this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -154,9 +126,8 @@ public class HomeActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        binding.homeRecyclerViewHorizontal.setLayoutManager(new GridLayoutManager(this,2));
+        binding.homeRecyclerViewHorizontal.setLayoutManager(new GridLayoutManager(this, 2));
         binding.homeRecyclerViewHorizontal.setAdapter(adapter);
-
 
 
     }
@@ -177,6 +148,7 @@ public class HomeActivity extends AppCompatActivity {
         btnSelect = add_menu_layout.findViewById(R.id.categoryImageCamera);
         btnUpload = add_menu_layout.findViewById(R.id.uploadCategoryImage);
         showImage = add_menu_layout.findViewById(R.id.categoryImage);
+        uploaded = add_menu_layout.findViewById(R.id.uploaded);
 
       /*  yseBtn = add_menu_layout.findViewById(R.id.yesBtn);
         noBtn = add_menu_layout.findViewById(R.id.noBtn);*/
@@ -211,21 +183,21 @@ public class HomeActivity extends AppCompatActivity {
                 category.orderByChild("categoryName").equalTo(name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
-                            for (DataSnapshot data: dataSnapshot.getChildren()) {
-                               // String uid = data.getKey();
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                // String uid = data.getKey();
                                 Toast.makeText(HomeActivity.this, "Data All ready Exist. Try Different one", Toast.LENGTH_SHORT).show();
                                 showDialog();
                             }
-                        }else {
+                        } else {
                             String key = category.push().getKey();
-                            Category cat = new Category(userId,key,name,imageUrl);
+                            Category cat = new Category(userId, key, name, imageUrl);
 
                             DatabaseReference categoryRef = category;
                             categoryRef.child(key).setValue(cat).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(HomeActivity.this, "Done", Toast.LENGTH_SHORT).show();
                                         showImage.setImageURI(null);
                                     }
@@ -280,6 +252,8 @@ public class HomeActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
 
                                     imageUrl = uri.toString();
+                                    btnUpload.setVisibility(View.GONE);
+                                    uploaded.setVisibility(View.VISIBLE);
                                 }
                             });
                         }
@@ -295,7 +269,7 @@ public class HomeActivity extends AppCompatActivity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            int value = (int)Math.round(progress);
+                            int value = (int) Math.round(progress);
                             mDialog.setMessage("Uploaded " + value + " %");
                         }
                     });
@@ -309,13 +283,14 @@ public class HomeActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), Common.PICK_IMAGE_REQUEST);
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Common.PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             saveUri = data.getData();
-          //  binding.showIV.setImageURI(uri);
+            //  binding.showIV.setImageURI(uri);
 //            btnSelect.setIm("Image Selected");
             showImage.setImageURI(saveUri);
             btnSelect.setVisibility(View.GONE);
