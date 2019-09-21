@@ -53,8 +53,8 @@ public class ProductActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private EditText productNameET, productPriceET,productDiscount;
     private ImageView productImageCamera, productImageShow;
-    private TextView btnUpload;
-    private String categoryId, name, price, discount, imageUrl = "";
+    private TextView btnUpload, uploaded;
+    private String categoryId, name, price, discount, imageUrl = "", categoryN;
     private Uri saveUri;
     private List<Product> productList;
     private ProductAdapter adapter;
@@ -67,6 +67,9 @@ public class ProductActivity extends AppCompatActivity {
         init();
         controlFAB();
         categoryId = getIntent().getStringExtra("key");
+        categoryN = getIntent().getStringExtra("name");
+        binding.categoryN.setText(categoryN);
+
         getProduct();
     }
 
@@ -154,6 +157,7 @@ public class ProductActivity extends AppCompatActivity {
         btnUpload = add_menu_layout.findViewById(R.id.uploadProductImage);
         productImageCamera = add_menu_layout.findViewById(R.id.productImageCamera);
         productImageShow = add_menu_layout.findViewById(R.id.productImage);
+        uploaded = add_menu_layout.findViewById(R.id.uploaded);
 
 
       /*  yseBtn = add_menu_layout.findViewById(R.id.yesBtn);
@@ -186,15 +190,20 @@ public class ProductActivity extends AppCompatActivity {
                 dialog.dismiss();
                 name = productNameET.getText().toString();
                 price = productPriceET.getText().toString();
+                double regularPrice = Double.parseDouble(price);
+
                 discount = productDiscount.getText().toString();
                 if(discount.isEmpty()){
                     discount = "0";
                 }
                 discountAmount= Integer.parseInt(discount);
 
-                String key = category.child(categoryId).child("Product").push().getKey();
+                double currentPrice = regularPrice - (regularPrice * Double.valueOf(discountAmount))/100;
 
-                Product product = new Product(categoryId,key,name,price,imageUrl,discountAmount);
+                String key = category.child(categoryId).child("Product").push().getKey();
+                String userId = firebaseAuth.getCurrentUser().getUid();
+
+                Product product = new Product(userId,categoryId,key,name,regularPrice,currentPrice,imageUrl,discountAmount);
 
                 DatabaseReference productRef = category.child(categoryId).child("Product");
                 productRef.child(key).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -209,49 +218,7 @@ public class ProductActivity extends AppCompatActivity {
                 });
 
 
-                //String userId = firebaseAuth.getCurrentUser().getUid();
-//                category.orderByChild("categoryName").equalTo(name).addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.exists()){
-//                            for (DataSnapshot data: dataSnapshot.getChildren()) {
-//                                // String uid = data.getKey();
-//                                Toast.makeText(HomeActivity.this, "Data All ready Exist. Try Different one", Toast.LENGTH_SHORT).show();
-//                                showDialog();
-//                            }
-//                        }else {
-//                            String key = category.push().getKey();
-//                            Category cat = new Category(key,name,imageUrl);
-//
-//                            DatabaseReference categoryRef = category;
-//                            categoryRef.child(key).setValue(cat).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if (task.isSuccessful()){
-//                                        Toast.makeText(ProductActivity.this, "Done", Toast.LENGTH_SHORT).show();
-//                                        productImageShow.setImageURI(null);
-//                                    }
-//
-//                                }
-//                            });
-//
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
-                //Here, just create new category
-//                if (newCategory != null) {
-//                    category.push().setValue(newCategory);
-//                   /* Snackbar.make(drawer, "New Category " + newCategory.getName() + "was added ", Snackbar.LENGTH_SHORT)
-//                            .show();*/
-//                    Toast.makeText(HomeActivity.this, "done", Toast.LENGTH_SHORT).show();
-//                }
             }
         });
         alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -292,6 +259,9 @@ public class ProductActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
 
                                     imageUrl = uri.toString();
+                                    btnUpload.setVisibility(View.GONE);
+                                    uploaded.setVisibility(View.VISIBLE);
+
                                 }
                             });
                         }
@@ -320,11 +290,14 @@ public class ProductActivity extends AppCompatActivity {
         if (requestCode == Common.PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             saveUri = data.getData();
-            //  binding.showIV.setImageURI(uri);
-//            btnSelect.setIm("Image Selected");
             productImageShow.setImageURI(saveUri);
             productImageCamera.setVisibility(View.GONE);
             productImageShow.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void backFromProduct(View view) {
+        startActivity(new Intent(ProductActivity.this,HomeActivity.class));
+        finish();
     }
 }

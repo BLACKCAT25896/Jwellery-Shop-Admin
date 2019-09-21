@@ -62,6 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
                 Intent intent = new Intent(context, ProductActivity.class);
                 intent.putExtra("key",currentCategory.getCategoryId());
+                intent.putExtra("name",currentCategory.getCategoryName());
                 context.startActivity(intent );
 
 

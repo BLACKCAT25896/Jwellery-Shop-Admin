@@ -2,6 +2,7 @@ package com.example.jewelleryshopadmin.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,16 +38,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProductViewHolder holder, int position) {
         Product currentProduct = productList.get(position);
         holder.name.setText(currentProduct.getProductName());
-        holder.regularPrice.setText(currentProduct.getProductRegularPrice());
-        if(currentProduct.getProductDiscountPrice()==null){
+        holder.regularPrice.setText(String.valueOf(currentProduct.getProductRegularPrice()));
+
+        if(currentProduct.getProductDiscountPrice() == currentProduct.getProductRegularPrice()){
             holder.discountPrice.setVisibility(View.GONE);
+            holder.regularPrice.setTextColor(Color.parseColor("#B31F5F"));
 
         }else {
 
-            holder.discountPrice.setText(currentProduct.getProductDiscountPrice());
+            holder.discountPrice.setText(String.valueOf(currentProduct.getProductDiscountPrice()));
 
         }
         if(currentProduct.getProductDiscount()==0){
@@ -71,6 +74,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }else {
             holder.productImage.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_image_black_24dp));
         }
+
+        holder.beforeFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.beforeFav.setVisibility(View.GONE);
+                holder.afterFav.setVisibility(View.VISIBLE);
+            }
+        });
+        holder.afterFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.afterFav.setVisibility(View.GONE);
+                holder.beforeFav.setVisibility(View.VISIBLE);
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +114,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView name, regularPrice, discountPrice, discount;
-        ImageView productImage;
+        ImageView productImage,beforeFav,afterFav;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,6 +123,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             discountPrice = itemView.findViewById(R.id.currentPriceTV);
             discount = itemView.findViewById(R.id.discountTV);
             productImage = itemView.findViewById(R.id.productImageIV);
+            beforeFav = itemView.findViewById(R.id.beforeFavIV);
+            afterFav = itemView.findViewById(R.id.afterFavIV);
+
         }
     }
 }

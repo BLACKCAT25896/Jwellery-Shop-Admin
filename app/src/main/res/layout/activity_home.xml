@@ -15,6 +15,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/topLayout"
             android:orientation="vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search......"
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/searchProduct"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homeRecyclerViewHorizontal"

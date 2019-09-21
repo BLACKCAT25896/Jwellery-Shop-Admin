@@ -1,11 +1,12 @@
 package com.example.jewelleryshopadmin.model;
 
 public class Product {
+    private String userId;
     private String categoryId;
     private String productId;
     private String productName;
-    private String productRegularPrice;
-    private String productDiscountPrice;
+    private double productRegularPrice;
+    private double productDiscountPrice;
     private String productImage;
     private int productDiscount;
 
@@ -14,16 +15,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String categoryId, String productId, String productName, String productRegularPrice, String productImage, int productDiscount) {
-        this.categoryId = categoryId;
-        this.productId = productId;
-        this.productName = productName;
-        this.productRegularPrice = productRegularPrice;
-        this.productImage = productImage;
-        this.productDiscount = productDiscount;
-    }
-
-    public Product(String categoryId, String productId, String productName, String productRegularPrice, String productDiscountPrice, String productImage, int productDiscount) {
+    public Product(String userId, String categoryId, String productId, String productName, double productRegularPrice, double productDiscountPrice, String productImage, int productDiscount) {
+        this.userId = userId;
         this.categoryId = categoryId;
         this.productId = productId;
         this.productName = productName;
@@ -31,6 +24,10 @@ public class Product {
         this.productDiscountPrice = productDiscountPrice;
         this.productImage = productImage;
         this.productDiscount = productDiscount;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getCategoryId() {
@@ -45,11 +42,11 @@ public class Product {
         return productName;
     }
 
-    public String getProductRegularPrice() {
+    public double getProductRegularPrice() {
         return productRegularPrice;
     }
 
-    public String getProductDiscountPrice() {
+    public double getProductDiscountPrice() {
         return productDiscountPrice;
     }
 

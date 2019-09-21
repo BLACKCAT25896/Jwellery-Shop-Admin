@@ -75,31 +75,46 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getCategory() {
-       // String userId = firebaseAuth.getCurrentUser().getUid();
-        DatabaseReference catRef = category;
-        catRef.addValueEventListener(new ValueEventListener() {
+       String userId = firebaseAuth.getCurrentUser().getUid();
+        category.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()){
                     categoryList.clear();
-
-
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        Category category = data.getValue(Category.class);
-                        // String pushId = data.getKey();
-                        categoryList.add(category);
-                       // String namee = data.child("categoryName").getValue().toString();
+                                    Category category = data.getValue(Category.class);
+                                    categoryList.add(category);
+                                    adapter.notifyDataSetChanged();
+                                }
+                                binding.homeRecyclerViewHorizontal.setAdapter(adapter);
 
-                       // Toast.makeText(HomeActivity.this, ""+namee, Toast.LENGTH_SHORT).show();
 
-                        //pushList.add(pushId);
-                        //binding.dummyTextTV.setVisibility(View.INVISIBLE);
-
-                        adapter.notifyDataSetChanged();
-                    }
-                    binding.homeRecyclerViewHorizontal.setAdapter(adapter);
+//                    DatabaseReference catRef = category;
+//                    catRef.addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if(dataSnapshot.exists()){
+//                                categoryList.clear();
+//
+//
+//                                for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                                    Category category = data.getValue(Category.class);
+//                                    categoryList.add(category);
+//                                    adapter.notifyDataSetChanged();
+//                                }
+//                                binding.homeRecyclerViewHorizontal.setAdapter(adapter);
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
 
                 }
+
             }
 
             @Override
@@ -107,6 +122,11 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+
+        /////////////Test//////////
+
+
 
     }
 
@@ -187,7 +207,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int i) {
                 dialog.dismiss();
                 name = edtName.getText().toString();
-                //String userId = firebaseAuth.getCurrentUser().getUid();
+                final String userId = firebaseAuth.getCurrentUser().getUid();
                 category.orderByChild("categoryName").equalTo(name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -199,7 +219,7 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         }else {
                             String key = category.push().getKey();
-                            Category cat = new Category(key,name,imageUrl);
+                            Category cat = new Category(userId,key,name,imageUrl);
 
                             DatabaseReference categoryRef = category;
                             categoryRef.child(key).setValue(cat).addOnCompleteListener(new OnCompleteListener<Void>() {

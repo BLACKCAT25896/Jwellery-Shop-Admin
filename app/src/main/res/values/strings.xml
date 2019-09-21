@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JewelleryShop Admin</string>
+    <string name="sign_up">sign_up</string>
+    <string name="sign_in">signIn</string>
 </resources>

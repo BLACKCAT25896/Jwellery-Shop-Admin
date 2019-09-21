@@ -1,6 +1,7 @@
 package com.example.jewelleryshopadmin.model;
 
 public class Category {
+    private String userId;
     private String categoryId;
     private String categoryName;
     private String categoryImage;
@@ -8,7 +9,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(String categoryId, String categoryName, String categoryImage) {
+    public Category(String userId, String categoryId, String categoryName, String categoryImage) {
+        this.userId = userId;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.categoryImage = categoryImage;
@@ -24,5 +26,9 @@ public class Category {
 
     public String getCategoryImage() {
         return categoryImage;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

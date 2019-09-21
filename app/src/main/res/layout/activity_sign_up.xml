@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.SignInActivity">
+        tools:context=".activity.SignUpActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -15,13 +15,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
+                android:text="Sign Up"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:gravity="center"/>
         </androidx.appcompat.widget.Toolbar>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,22 +30,34 @@
 
 
 
-
             <EditText
-                android:id="@+id/signInEmailET"
+                android:id="@+id/signUpNameET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:padding="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_text"
+                android:hint="Name"/>
+            <EditText
+                android:id="@+id/signUpEmailET"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:padding="10dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_text"
                 android:hint="Email"/>
-
-
             <EditText
-                android:id="@+id/signInPasswordET"
+                android:id="@+id/signUpPasswordET"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
                 android:padding="10dp"
                 android:inputType="textPassword"
                 android:layout_marginBottom="20dp"
@@ -54,12 +65,13 @@
                 android:hint="Password"/>
 
             <Button
-                android:id="@+id/signInBtn"
+                android:id="@+id/signUpBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SignIn"
+                android:text="Sign Up"
                 android:layout_marginTop="10dp"
                 android:textAllCaps="false"
+                android:imeOptions="actionDone"
                 android:background="@drawable/custom_btn"
                 android:textStyle="bold"
                 android:layout_gravity="right"
@@ -74,29 +86,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Don't have an account?"/>
+                    android:text="Already have an Account?"/>
 
                 <TextView
-                    android:id="@+id/signUpTV"
+                    android:id="@+id/signInTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
                     android:textSize="16dp"
-                    android:text="@string/sign_up"/>
+                    android:text="@string/sign_in"/>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textStyle="bold"
-                android:textColor="#273c75"
-                android:textSize="14dp"
-                android:id="@+id/phone"
-                android:text="Sign In with Phone Number?"
-                android:layout_gravity="center"/>
 
 
 
