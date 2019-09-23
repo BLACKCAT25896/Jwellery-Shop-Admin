@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,8 @@ import java.util.UUID;
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private EditText edtName;
-    private ImageView btnSelect, showImage;
+    private LinearLayout btnSelect;
+    private ImageView  showImage;
     private TextView btnUpload,uploaded;
     private Category newCategory;
     private Button yseBtn, noBtn;
@@ -126,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        binding.homeRecyclerViewHorizontal.setLayoutManager(new GridLayoutManager(this, 2));
+        binding.homeRecyclerViewHorizontal.setLayoutManager(new GridLayoutManager(this, 3));
         binding.homeRecyclerViewHorizontal.setAdapter(adapter);
 
 
@@ -295,6 +297,7 @@ public class HomeActivity extends AppCompatActivity {
             showImage.setImageURI(saveUri);
             btnSelect.setVisibility(View.GONE);
             showImage.setVisibility(View.VISIBLE);
+            btnUpload.setVisibility(View.VISIBLE);
         }
     }
 }
