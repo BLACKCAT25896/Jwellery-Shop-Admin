@@ -132,7 +132,7 @@ public class ProductActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         adapter = new ProductAdapter(productList,this);
-        binding.productRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        binding.productRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
         binding.productRecyclerView.setAdapter(adapter);
 
 

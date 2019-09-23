@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+
+            >
+            <EditText
+                android:id="@+id/productNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:imeOptions="actionNext"
+                android:hint=" Name"/>
+            <EditText
+                android:id="@+id/productPriceET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=" Price"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                />
+            <EditText
+                android:id="@+id/productDiscountET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:hint=" Discount"/>
+            <EditText
+                android:id="@+id/productDescriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:imeOptions="actionDone"
+                android:hint=" Description"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

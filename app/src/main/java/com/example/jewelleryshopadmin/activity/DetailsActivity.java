@@ -55,6 +55,21 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        binding.beforeFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.beforeFav.setVisibility(View.GONE);
+                binding.afterFav.setVisibility(View.VISIBLE);
+            }
+        });
+        binding.afterFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.afterFav.setVisibility(View.GONE);
+                binding.beforeFav.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
 
